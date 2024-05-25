@@ -22,7 +22,7 @@ def decrypt(decryptData: DecryptKeyToken):
     return {"message": Fernet(key).decrypt(token).decode()}
 
 @app.post("/encrypt")
-def enrypt(encryptData: EncryptMessage):
+def encrypt(encryptData: EncryptMessage):
     key = Fernet.generate_key()
     token = Fernet(key).encrypt(encryptData.message.encode())
     return {"key": key.decode(), "token": token.decode()}
