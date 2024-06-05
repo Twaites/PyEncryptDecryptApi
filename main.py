@@ -29,7 +29,7 @@ def decrypt(decryptData: DecryptKeyToken):
 @app.post("/encrypt")
 def encrypt(encryptData: EncryptMessage):
     try:
-        key = Fernet.generate_key() if not encryptData.key else Fernet(encryptData.key.encode())
+        key = Fernet.generate_key() if not encryptData.key else encryptData.key.encode()
         token = Fernet(key).encrypt(encryptData.message.encode())
         return {"key": key.decode(), "token": token.decode()}
     except Exception as e:
